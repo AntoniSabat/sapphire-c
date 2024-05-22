@@ -4,7 +4,7 @@ import {Avatar, Button, Timeline} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
 import CountUp from "react-countup";
 import {useState} from "react";
-import ScrollTrigger from "react-scroll-trigger";
+import ScrollTrigger from 'react-scroll-trigger';
 import ubranie from "../../assets/images/ubranie.png";
 import plakat from '../../assets/images/plakat.png';
 import icon from '../../assets/images/icon.png';
@@ -82,17 +82,19 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div id={'result'} className={'grid grid-cols-2 container mx-auto lg:grid-cols-4 place-items-center'}>
+            <div id="result" className="grid grid-cols-2 container mx-auto lg:grid-cols-4 place-items-center">
                 {results.map((result, index) => (
-                    <div key={index} className={`flex flex-col items-center`}>
+                    <div key={index} className="flex flex-col items-center">
+                        {/* @ts-ignore */}
                         <ScrollTrigger onEnter={() => setCounterOn(true)} onExit={() => setCounterOn(false)}>
-                            {counterOn &&
-                                <h1 className={'font-bold text-[50px]'}>
-                                    <CountUp end={result.ammount} duration={2} delay={0}/>{result.plus && '+'}
+                            {counterOn && (
+                                <h1 className="font-bold text-[50px]">
+                                    <CountUp end={result.ammount} duration={2} delay={0}/>
+                                    {result.plus && '+'}
                                 </h1>
-                            }
+                            )}
                         </ScrollTrigger>
-                        <p className={'small-caps text-xl text-stone-700 font-light'}>{result.text}</p>
+                        <p className="small-caps text-xl text-stone-700 font-light">{result.text}</p>
                     </div>
                 ))}
             </div>
@@ -131,8 +133,10 @@ const HomePage = () => {
                 </div>
 
                 <div className={'flex flex-col justify-center items-center w-full md:w-1/2'}>
-                    <img loading={'lazy'} className={'h-[350px] translate-x-[25%] rounded-xl shadow-2xl'} src={plakat} alt=""/>
-                    <img loading={'lazy'} className={'h-[350px] translate-x-[-25%] translate-y-[-15%] rounded-xl shadow-2xl'}
+                    <img loading={'lazy'} className={'h-[350px] translate-x-[25%] rounded-xl shadow-2xl'} src={plakat}
+                         alt=""/>
+                    <img loading={'lazy'}
+                         className={'h-[350px] translate-x-[-25%] translate-y-[-15%] rounded-xl shadow-2xl'}
                          src={ubranie} alt=""/>
                 </div>
             </div>
@@ -149,38 +153,41 @@ const HomePage = () => {
                             <Timeline.Time>Obecnie</Timeline.Time>
                             <Timeline.Title>Rozwijamy się</Timeline.Title>
                             <Timeline.Body>
-                                Get access to over 20+ pages including a dashboard layout, charts, kanban board, calendar, and pre-order
+                                Get access to over 20+ pages including a dashboard layout, charts, kanban board,
+                                calendar, and pre-order
                                 E-commerce & Marketing pages.
                             </Timeline.Body>
                         </Timeline.Content>
                     </Timeline.Item>
                     <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
+                        <Timeline.Point icon={HiCalendar}/>
                         <Timeline.Content>
                             <Timeline.Time>2022</Timeline.Time>
                             <Timeline.Title>Tutaj coś tam będzie</Timeline.Title>
                             <Timeline.Body>
-                                All of the pages and components are first designed in Figma and we keep a parity between the two versions
+                                All of the pages and components are first designed in Figma and we keep a parity between
+                                the two versions
                                 even as we update the project.
                             </Timeline.Body>
                             <Button color="gray">
                                 Więcej info
-                                <HiArrowNarrowRight className="ml-2 h-3 w-3" />
+                                <HiArrowNarrowRight className="ml-2 h-3 w-3"/>
                             </Button>
                         </Timeline.Content>
                     </Timeline.Item>
                     <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
+                        <Timeline.Point icon={HiCalendar}/>
                         <Timeline.Content>
                             <Timeline.Time>1991</Timeline.Time>
                             <Timeline.Title>Pierwszy turniej</Timeline.Title>
                             <Timeline.Body>
-                                Get started with dozens of web components and interactive elements built on top of Tailwind CSS.
+                                Get started with dozens of web components and interactive elements built on top of
+                                Tailwind CSS.
                             </Timeline.Body>
                         </Timeline.Content>
                     </Timeline.Item>
                     <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar} />
+                        <Timeline.Point icon={HiCalendar}/>
                         <Timeline.Content>
                             <Timeline.Time>Rok załozenia 1990</Timeline.Time>
                             <Timeline.Title>Powstanie Sapphire Studio</Timeline.Title>

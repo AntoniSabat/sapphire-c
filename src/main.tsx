@@ -12,7 +12,6 @@ import TreatmentDetails from "./pages/TreatmentsPages/TreatmentDetails.tsx";
 import EmployeesPage from "./pages/EmployeesPages/EmployeesPage.tsx";
 import EmployeeDetails from "./pages/EmployeesPages/EmployeeDetails.tsx";
 import {KINDE_CLIENT_ID, KINDE_DOMAIN, KINDE_LOGOUT_URI, KINDE_REDIRECT_URI} from "./Utils/env.ts";
-import ChooseCompTreatmentTime from "./pages/CompsPages/ChooseCompTreatmentTime.tsx";
 import ReportsPage from "./pages/CompsPages/ReportsPage.tsx";
 import ChooseCompReports from "./pages/CompsPages/ChooseCompReports.tsx";
 import EditReport from "./pages/CompsPages/EditReport.tsx";
@@ -41,10 +40,10 @@ const router = createBrowserRouter([
                 path: ':id',
                 element: <CompDetails/>
             },
-            {
-                path: ':compId/choose-time/:treatmentId',
-                element: <ChooseCompTreatmentTime/>
-            },
+            // {
+            //     path: ':compId/choose-time/:treatmentId',
+            //     element: <ChooseCompTreatmentTime/>
+            // },
             {
                 path: 'reports',
                 element: <ChooseCompReports/>
