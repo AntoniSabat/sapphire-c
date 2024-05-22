@@ -1,0 +1,65 @@
+@import "../../index.scss";
+
+.reports {
+  position: relative;
+}
+
+.time-cols {
+  position: relative;
+}
+
+.calendar {
+  height: 2000px;
+  width: 100%;
+  position: relative;
+  border-spacing: 0;
+}
+
+th, td {
+  padding: 0
+}
+
+.treatment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(90%);
+  color: black;
+  border-bottom: 1px solid white;
+  border-radius: 7px;
+  cursor: pointer;
+  background-color: lightgray;
+
+  &.confirmed {
+    background-color: $primary-color;
+    color: black;
+  }
+  &.no-confirmed {
+    background-color: #33302a;
+    color: white;
+  }
+
+  .title {
+    font-size: 13px;
+    letter-spacing: .5px;
+  }
+
+  .time {
+    font-size: 12px;
+    font-weight: 400;
+  }
+}
+
+$treatment-z-index: 10;
+$treatment-elements: ".treatment";
+
+@each $element in $treatment-elements {
+  #{$element} {
+    z-index: $treatment-z-index;
+    $treatment-z-index: $treatment-z-index + 1;
+  }
+}

@@ -1,0 +1,45 @@
+.circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radius {
+  border-radius: 50px;
+}
+
+.circleImg {
+  height: 85%;
+  width: 85%;
+  background-image: url("../../assets/images/lenahome.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.small-caps {
+  font-variant: small-caps;
+}
+
+.gradient {
+  clip-path: polygon(0 13%, 100% 0%, 100% 86%, 0% 100%);
+  padding-top: 70px;
+  //background: rgb(175,198,216);
+  //background: linear-gradient(235deg, rgba(175,198,216,1) 35%, rgba(90,116,131,1) 100%);
+}
+
+.test {
+  background-image: url("../../assets/images/lenahome.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  margin-top: -14%;
+}
+
+@media (max-width: 768px) {
+  .circle {
+    position: absolute;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}

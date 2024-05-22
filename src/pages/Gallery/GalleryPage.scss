@@ -1,0 +1,20 @@
+.galleryImage {
+  height: 35vh;
+  object-fit: contain;
+}
+@media (max-width: 640px) {
+  .gallerySection {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  .galerySpan {
+    display: flex;
+    justify-content: center;
+
+    .galleryImage {
+      height: fit-content;
+      width: 70vw;
+    }
+  }
+}

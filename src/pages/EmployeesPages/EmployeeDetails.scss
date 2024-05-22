@@ -1,0 +1,17 @@
+* {
+  scroll-behavior: smooth;
+}
+
+.employeeInfo {
+  min-height: 80vh;
+  background-image: url('../../assets/images/circles.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+.codeLoader {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translateX(-50%);
+}

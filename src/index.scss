@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Advent+Pro:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+$primary-color: #afc6d8;
+$secondary-color: #5a7483;
+$danger-color: #eb445a;
+$medium-color: rgb(51,65,84);
+$light-color: #fafafa;
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: fit-content;
+  overflow-x: hidden;
+  font-family: 'Advent', sans-serif;
+  scroll-behavior: smooth;
+}

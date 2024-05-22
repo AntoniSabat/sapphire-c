@@ -1,0 +1,27 @@
+.userName {
+  font-family: 'Open sans', sans-serif;
+  color: rgb(50, 50, 93);
+  padding: 0 10px;
+}
+.userEmail {
+  font-weight: 300;
+}
+.shadow {
+  box-shadow: 0 0 19px 0 rgba(0, 0, 0, .07) !important;
+}
+
+.box {
+  background-image: url('../../assets/images/bg.svg');
+  background-position: center 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
+.avatar {
+  transform: translateY(-50%);
+  transition: .3s;
+
+  &:hover {
+    transform: translateY(-60%);
+  }
+}
