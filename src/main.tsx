@@ -88,15 +88,6 @@ const router = createBrowserRouter([
         path: '/gallery',
         element: <GalleryPage/>
     }
-    // {
-    //     element: <ProtectedRoute />,
-    //     children: [
-    //         {
-    //             path: '',
-    //             element: ''
-    //         }
-    //     ]
-    // }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(

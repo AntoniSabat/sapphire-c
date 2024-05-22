@@ -13,7 +13,6 @@ import {PAGE_PATH} from "../../Utils/env.ts";
 import {HiHome, HiInformationCircle} from "react-icons/hi";
 import {customTheme} from "../../Utils/theme.ts";
 import {Currency} from "../../models/Treatment.model.ts";
-// import Footer1 from "../../components/utils/Footer1.tsx";
 
 const CompDetails = () => {
     const {id} = useParams();
