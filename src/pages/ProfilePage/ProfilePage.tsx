@@ -5,9 +5,19 @@ import {customTheme} from "../../Utils/theme.ts";
 import Menu from "../../components/utils/Menu.tsx";
 import {useEffect, useState} from "react";
 
+const checkUserPicture = (pictureUrl: string): Promise<string> => {
+    return new Promise((resolve, _) => {
+        const img = new Image();
+        img.onload = () => resolve(pictureUrl);
+        img.onerror = () => resolve('');
+        img.src = pictureUrl;
+    });
+}
+
 const ProfilePage = () => {
     const {login, register, logout, isAuthenticated,  user, isLoading, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
+    const [userPicture, setUserPicture] = useState<string | undefined>('');
 
     useEffect(() => {
         if (isAuthenticated) {
@@ -18,9 +28,20 @@ const ProfilePage = () => {
         }
     }, [isAuthenticated]);
 
-    const checkUserPicture = () => {
-        return user?.picture ? user.picture : '';
-    }
+    useEffect(() => {
+        const fetchUserPicture = async () => {
+            try {
+                if (user?.picture) {
+                    const pictureUrl = await checkUserPicture(user.picture);
+                    setUserPicture(pictureUrl as string);
+                }
+            } catch (error) {
+                console.error('Błąd podczas ładowania obrazka:', error);
+            }
+        };
+
+        fetchUserPicture();
+    }, [user?.picture]);
 
     return (
         <div className={'w-full m-auto box'}>
@@ -33,7 +54,7 @@ const ProfilePage = () => {
                     <div className={'shadow container w-[80%] m-auto bg-transparent h-[40vh] mt-[20vh] relative rounded-md lg:w-1/2 md:w-[60%]'}>
                         {isAuthenticated
                             ? <>
-                                <Avatar img={`${checkUserPicture()}`} rounded size={"xl"} className={'avatar'}/>
+                                <Avatar img={`${userPicture}`} rounded size={"xl"} className={'avatar'}/>
 
                                 <div className={'flex flex-col gap-1.5 mt-[-50px]'}>
                                     <p className={'userName text-center text-3xl'}>{user?.given_name} {user?.family_name}{admin && ' - admin'}</p>
@@ -43,9 +64,9 @@ const ProfilePage = () => {
                             </>
                             : <div className={'buttons flex gap-2 justify-center items-center h-full'}>
                                 <Button theme={customTheme.button} color={'primary'}
-                                        onClick={() => register({org_code: 'org_10006d186d9'})}>register</Button>
+                                        onClick={() => login({org_code: 'org_10006d186d9'})}>zaloguj się</Button>
                                 <Button theme={customTheme.button} color={'primary'}
-                                        onClick={() => login({org_code: 'org_10006d186d9'})}>login</Button>
+                                        onClick={() => register({org_code: 'org_10006d186d9'})}>zarejestruj się</Button>
                             </div>
                         }
                     </div>

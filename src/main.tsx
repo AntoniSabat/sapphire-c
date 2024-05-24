@@ -18,6 +18,7 @@ import EditReport from "./pages/CompsPages/EditReport.tsx";
 import GalleryPage from "./pages/Gallery/GalleryPage.tsx";
 import HomePage from "./pages/HomePage/HomePage.tsx";
 import {register} from "swiper/element";
+import ProtectedRoute from "./ProtectedRoute.tsx";
 register();
 
 const router = createBrowserRouter([
@@ -40,22 +41,10 @@ const router = createBrowserRouter([
                 path: ':id',
                 element: <CompDetails/>
             },
-            // {
-            //     path: ':compId/choose-time/:treatmentId',
-            //     element: <ChooseCompTreatmentTime/>
-            // },
-            {
-                path: 'reports',
-                element: <ChooseCompReports/>
-            },
             {
                 path: ':compId/reports',
                 element: <ReportsPage/>
             },
-            {
-                path: ':compId/reports/:reportId',
-                element: <EditReport/>
-            }
         ]
     },
     {
@@ -83,6 +72,24 @@ const router = createBrowserRouter([
                 element: <EmployeeDetails/>
             }
         ]
+    },
+    {
+      element: <ProtectedRoute/>,
+      children: [
+          {
+              path: '/comps',
+              children: [
+                  {
+                      path: 'reports',
+                        element: <ChooseCompReports/>
+                  },
+                  {
+                      path: ':compId/reports/:reportId',
+                      element: <EditReport/>
+                  }
+              ]
+          }
+      ]
     },
     {
         path: '/gallery',

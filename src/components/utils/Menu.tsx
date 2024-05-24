@@ -14,6 +14,7 @@ import {
     NavbarToggle, Spinner
 } from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
+import {useEffect, useState} from "react";
 
 const links = [
     { href: PAGE_PATH, label: "Główna" },
@@ -24,12 +25,33 @@ const links = [
     { href: `${PAGE_PATH}/gallery`, label: "Galeria" }
 ];
 
+const checkUserPicture = (pictureUrl: string): Promise<string> => {
+    return new Promise((resolve, _) => {
+        const img = new Image();
+        img.onload = () => resolve(pictureUrl);
+        img.onerror = () => resolve('');
+        img.src = pictureUrl;
+    });
+}
+
 const Menu = ({upperHeader= true}) => {
     const {logout, isAuthenticated,  user, isLoading} = useKindeAuth();
+    const [userPicture, setUserPicture] = useState<string | undefined>('');
 
-    const checkUserPicture = () => {
-        return user?.picture ? user.picture : '';
-    }
+    useEffect(() => {
+        const fetchUserPicture = async () => {
+            try {
+                if (user?.picture) {
+                    const pictureUrl = await checkUserPicture(user.picture);
+                    setUserPicture(pictureUrl as string);
+                }
+            } catch (error) {
+                console.error('Błąd podczas ładowania obrazka:', error);
+            }
+        };
+
+        fetchUserPicture();
+    }, [user?.picture]);
 
     return (
         <div>
@@ -50,7 +72,7 @@ const Menu = ({upperHeader= true}) => {
                                         arrowIcon={false}
                                         inline
                                         label={
-                                            <Avatar img={`${checkUserPicture()}`} rounded/>
+                                            <Avatar img={`${userPicture}`} rounded/>
                                         }
                                     >
                                         <Dropdown.Header>

@@ -149,7 +149,6 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }
 
     const checkIfEmployeeReportedInDifferentCompTreatment = (compTreatment: CompTreatment) => {
-        // setLoadingAvailableTimes(true);
         let check = false;
 
         const reports = comp.reports.filter(r => r.employeeId === selectedEmployeeId);
@@ -229,6 +228,11 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }
 
     const book = () => {
+        if (!isAuthenticated) {
+            ErrorAlert('Oops...', 'Musisz być zalogowany/-a, aby zarezerwować wizytę!');
+            return;
+        }
+
         ConfirmAlert('Jesteś pewna?', 'Czy na pewno chcesz zabookować tą wizytę?', (isConfirmed: boolean) => {
             if (isConfirmed) {
                 if (selectedEmployeeId && selectedCompTreatmentId) {
@@ -253,11 +257,11 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
                         }
                     }
 
-                    GraphQL.createReport(compId, selectedCompTreatmentId, client, selectedTreatment, selectedEmployeeId).then((res: {createReport}) => {
+                    GraphQL.createReport(compId, selectedCompTreatmentId, client, selectedTreatment, selectedEmployeeId).then((res: {
+                        createReport
+                    }) => {
                         setIsLoading(false);
                         setComp(res.createReport);
-                        // setChooseCompTreatmentOpen(false);
-
                         SuccessAlert('Super!', 'Pomyślnie zabookowano wizytę!')
                     })
                 } else {

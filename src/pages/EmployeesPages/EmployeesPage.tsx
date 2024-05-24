@@ -6,7 +6,7 @@ import {Employee, EmployeeTag} from "../../models/Employee.model.ts";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
-import {Alert, Button, Kbd, Label, Modal, Select, Spinner, TextInput} from "flowbite-react";
+import {Alert, Button, Kbd, Label, Modal, Select, Spinner, TextInput, Tooltip} from "flowbite-react";
 import "./EmployeesPage.scss";
 import topEmployee from "../../assets/images/topEmployee.jpeg";
 import stylistEmployee from "../../assets/images/stylistEmployee.png";
@@ -26,7 +26,6 @@ const EmployeesPage = () => {
     const [selectedCategory, setSelectedCategory] = useState<EmployeeTag>(EmployeeTag.TOP);
     const [availableEmployees, setAvailableEmployees] = useState([]);
 
-    // create employee
     const [isCreateEmployeeOpen, setIsCreateEmployeeOpen] = useState(false);
     const [treatments, setTreatments] = useState([]);
     const [isLoadingTreatments, setIsLoadingTreatments] = useState(true);
@@ -133,16 +132,24 @@ const EmployeesPage = () => {
 
                     <div className="w-full flex gap-5 p-5 mt-5 justify-center">
                         <button onClick={() => selectCategory(EmployeeTag.TOP)} className={selectedCategory === EmployeeTag.TOP ? 'transition duration-500 category border-primary border-8' : 'category'}>
-                            <img src={topEmployee} alt={''}/>
+                            <Tooltip content={'Nasi najlepsi pracownicy'}>
+                                <img src={topEmployee} alt={''}/>
+                            </Tooltip>
                         </button>
                         <button onClick={() => selectCategory(EmployeeTag.STYLIST)} className={selectedCategory === EmployeeTag.STYLIST ? 'transition duration-500 category border-primary border-8' : 'category'}>
-                            <img src={stylistEmployee} alt={''}/>
+                            <Tooltip content={'Pracownicy z dużym doświadczeniem'}>
+                                <img src={stylistEmployee} alt={''}/>
+                            </Tooltip>
                         </button>
                         <button onClick={() => selectCategory(EmployeeTag.JUNIOR)} className={selectedCategory === EmployeeTag.JUNIOR ? 'transition duration-500 category border-primary border-8' : 'category'}>
-                            <img src={juniorEmployee} alt={''}/>
+                            <Tooltip content={'Nasi najmłodsi pracownicy'}>
+                                <img src={juniorEmployee} alt={''}/>
+                            </Tooltip>
                         </button>
                         <button onClick={() => selectCategory(EmployeeTag.MAN)} className={selectedCategory === EmployeeTag.MAN ? 'transition duration-500 category border-primary border-8' : 'category'}>
-                            <img src={manEmployee} alt={''}/>
+                            <Tooltip content={'Pracownicy dla mężczyzn'}>
+                                <img src={manEmployee} alt={''}/>
+                            </Tooltip>
                         </button>
                     </div>
 
