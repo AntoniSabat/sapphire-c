@@ -35,14 +35,14 @@ const checkUserPicture = (pictureUrl: string): Promise<string> => {
 }
 
 const Menu = ({upperHeader= true}) => {
-    const {logout, isAuthenticated,  user, isLoading, getPermission} = useKindeAuth();
+    const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string | null } | null>(null);
+    const {logout, isAuthenticated , isLoading, getPermission} = useKindeAuth();
     const [userPicture, setUserPicture] = useState<string | undefined>('');
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
-            // const user = JSON.parse(localStorage.getItem('user'));
-            // setUserPicture(user.picture);
-            // todo: tutaj nie jestem pewny
+            const user = JSON.parse(localStorage.getItem('user'));
+            setUser(user);
         }
     }, []);
 
