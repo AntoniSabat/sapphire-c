@@ -51,6 +51,5 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
-  },
-  "proxy": "https://test-mlq0u27iq-antonisabats-projects.vercel.app"
+  }
 }
