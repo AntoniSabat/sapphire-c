@@ -33,7 +33,9 @@ const CompsPage = () => {
     }, [isAuthenticated]);
 
     useEffect(() => {
-        console.log(new Date('2022-12-12'))
+        // GraphQL.loadRecipes().then((res: {getRecipes}) => {
+        //     console.log(res.getRecipes);
+        // })
         GraphQL.loadComps().then((res: {comps}) => {
             setIsLoading(false);
             setComps(res.comps.sort((a: Comp, b: Comp) => convertToDate(a.date).getTime() - convertToDate(b.date).getTime()));

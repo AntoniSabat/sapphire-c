@@ -2,6 +2,21 @@ import {gql, request} from "graphql-request";
 import {GRAPHQL_API} from "./env.ts";
 import {Break} from "../models/Comp.model.ts";
 
+const loadRecipes = async() => {
+    const query = gql`
+    query GetRecipes {
+      getRecipes {
+        name
+        description
+        thumbsUp
+        thumbsDown
+        createdAt
+      }
+    }`
+
+    return await request('http://localhost:5005', query);
+}
+
 const loadComps = async() => {
     const query = gql`
         query {
@@ -531,7 +546,7 @@ const loadTreatments = async() => {
         query {
           treatments {
             _id
-            name 
+            name
             description
             currency
             price
@@ -557,7 +572,7 @@ const createTreatment = async (name: string, description: string, currency: stri
             description: "${description}"
           }) {
             _id
-            name 
+            name
             description
             currency
             price
@@ -594,7 +609,7 @@ const editTreatment = async(id: string, name: string, description: string, curre
           tag: "${tag}"
         }) {
           _id
-          name 
+          name
           description
           currency
           price
@@ -612,7 +627,7 @@ const loadTreatmentDetails = async(id: string) => {
     query {
       getTreatmentDetails(id:"${id}") {
          _id
-        name 
+        name
         description
         currency
         price
@@ -631,7 +646,7 @@ const loadEmployees = async() => {
           employees {
             _id
             name
-            surname 
+            surname
             description
             ig
             tag
@@ -648,7 +663,7 @@ const loadEmployeeDetails = async(id: string) => {
         query {
           getEmployeeDetails(id:"${id}") {
              _id
-            name 
+            name
             surname
             description
             treatmentsIds
@@ -677,7 +692,7 @@ const createEmployee = async(name: string, surname: string, description: string,
           }) {
             _id
             name
-            surname 
+            surname
             description
             ig
             image
@@ -705,7 +720,7 @@ const editEmployee = async(id: string, name: string, surname: string, descriptio
             tag: "${tag}"
           }) {
             _id
-            name 
+            name
             surname
             description
             treatmentsIds
@@ -770,7 +785,7 @@ const editGallery = async(id: string, name: string, images: string[]) => {
             images: ${imagesInput},
           }) {
             _id
-            name 
+            name
             images
           }
         }`
@@ -790,6 +805,8 @@ const removeGallery = async(id: string) => {
 }
 
 export default {
+    loadRecipes,
+
     // comps
     loadComps,
     loadCompDetails,
