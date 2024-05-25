@@ -35,8 +35,14 @@ const checkUserPicture = (pictureUrl: string): Promise<string> => {
 }
 
 const Menu = ({upperHeader= true}) => {
-    const {logout, isAuthenticated,  user, isLoading} = useKindeAuth();
+    const {logout, isAuthenticated,  user, isLoading, getPermission} = useKindeAuth();
     const [userPicture, setUserPicture] = useState<string | undefined>('');
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+
+        }
+    }, []);
 
     useEffect(() => {
         const fetchUserPicture = async () => {
@@ -52,6 +58,14 @@ const Menu = ({upperHeader= true}) => {
 
         fetchUserPicture();
     }, [user?.picture]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            const admin = getPermission('admin').isGranted;
+            admin ? localStorage.setItem('admin', 'true') : localStorage.removeItem('admin');
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+    }, [isAuthenticated]);
 
     return (
         <div>

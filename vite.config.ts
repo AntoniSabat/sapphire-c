@@ -9,6 +9,11 @@ export default defineConfig({
             changeOrigin: true,
             secure: false,
         },
+        '/api': {
+            target: 'https://sapphirestudio.kinde.com',
+            secure: false,
+            changeOrigin: true
+        }
     }
   },
   plugins: [react()],
