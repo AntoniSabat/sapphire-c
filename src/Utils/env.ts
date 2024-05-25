@@ -1,8 +1,8 @@
 // export const PAGE_PATH = 'https://www.sapphirestudio.online/';
 export const PAGE_PATH = 'https://sapphirestudio.online';
-export const API_PATH = 'https://test-mlq0u27iq-antonisabats-projects.vercel.app/';
+export const API_PATH = 'https://test-m68e2udqm-antonisabats-projects.vercel.app';
 // export const API_PATH = 'http://localhost:3000';
-export const GRAPHQL_API = "https://test-min6g6tav-antonisabats-projects.vercel.app/graphql";
+export const GRAPHQL_API = "https://test-m68e2udqm-antonisabats-projects.vercel.app/graphql";
 // export const GRAPHQL_API = "http://localhost:3000/graphql";
 export const CDN_API = 'https://api.imgbb.com/1/upload?key=ced1032cda8964de96c804e90ef55716';
 // todo: zamienić na właściwe ścieki po deployu
