@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import GraphQL from "../../Utils/GrapQL";
 import TreatmentItem from "../../components/treatmentItem.tsx";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import {Alert, Button, Label, Modal, Select, Spinner, TextInput} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
@@ -14,7 +13,6 @@ import {HiInformationCircle} from "react-icons/hi";
 import Footer1 from "../../components/utils/Footer1.tsx";
 
 const TreatmentsPage = () => {
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -33,13 +31,8 @@ const TreatmentsPage = () => {
     const [tag, setTag] = useState(TreatmentTag.HAIRSTYLE);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GraphQL.loadTreatments().then((res: {treatments}) => {

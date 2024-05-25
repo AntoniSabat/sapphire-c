@@ -5,7 +5,6 @@ import {Break, Comp} from "../../models/Comp.model.ts";
 import EditComp from "./EditComp.tsx";
 import ChooseCompTreatmentTime from "./ChooseCompTreatmentTime.tsx";
 import {ConfirmAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import {Employee} from "../../models/Employee.model.ts";
 import Menu from "../../components/utils/Menu.tsx";
 import {Alert, Breadcrumb, Button, Spinner, Table} from "flowbite-react";
@@ -17,7 +16,6 @@ import {Currency} from "../../models/Treatment.model.ts";
 const CompDetails = () => {
     const {id} = useParams();
 
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -34,13 +32,8 @@ const CompDetails = () => {
     const [chooseCompTreatmentOpen, setChooseCompTreatmentOpen] = useState(false);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GraphQL.loadCompDetails(id).then((res: { getCompDetails }) => {

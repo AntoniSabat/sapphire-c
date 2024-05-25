@@ -40,7 +40,9 @@ const Menu = ({upperHeader= true}) => {
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
-
+            // const user = JSON.parse(localStorage.getItem('user'));
+            // setUserPicture(user.picture);
+            // todo: tutaj nie jestem pewny
         }
     }, []);
 

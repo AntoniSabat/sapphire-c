@@ -3,7 +3,6 @@ import {useParams} from "react-router-dom";
 import {Currency, Treatment, TreatmentTag} from "../../models/Treatment.model.ts";
 import GrapQL from "../../Utils/GrapQL.ts";
 import EditTreatment from "./EditTreatment.tsx";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import {Avatar, Breadcrumb, Button, Spinner} from "flowbite-react";
 import {PAGE_PATH} from "../../Utils/env.ts";
@@ -13,8 +12,6 @@ import "./TreatmentDetails.scss";
 
 const TreatmentDetails = () => {
     const {id} = useParams();
-
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -35,13 +32,8 @@ const TreatmentDetails = () => {
     }, []);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GrapQL.loadTreatmentDetails(id).then((res: {getTreatmentDetails}) => {

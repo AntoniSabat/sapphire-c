@@ -4,20 +4,11 @@ import {PAGE_PATH} from "../../Utils/env.ts";
 import Menu from "../../components/utils/Menu.tsx";
 import {Button, Spinner, Table} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Footer1 from "../../components/utils/Footer1.tsx";
 
 const ChooseCompReports = () => {
-    const {isAuthenticated} = useKindeAuth();
-
     const [comps, setComps] = useState([]);
     const [compsLoading, setCompsLoading] = useState(true);
-
-    useEffect(() => {
-        if (isAuthenticated) {
-
-        }
-    }, [isAuthenticated]);
 
     useEffect(() => {
         GrapQL.loadComps().then((res: {comps}) => {

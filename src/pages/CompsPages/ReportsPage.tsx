@@ -4,7 +4,6 @@ import GrapQL from "../../Utils/GrapQL.ts";
 import {CompTreatment, Treatments} from "../../models/Comp.model.ts";
 import "./ReportsPage.scss";
 import {PAGE_PATH} from "../../Utils/env.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import {Employee} from "../../models/Employee.model.ts";
 import Menu from "../../components/utils/Menu.tsx";
 import Footer1 from "../../components/utils/Footer1.tsx";
@@ -17,7 +16,7 @@ const ReportsPage = () => {
     const {compId} = useParams();
     const [availableTimes, setAvailableTimes] = useState([]);
 
-    const {user, isAuthenticated, getPermission} = useKindeAuth();
+    const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string } | null>(null);
     const [admin, setAdmin] = useState(false);
 
     const [comp, setComp] = useState(null);
@@ -41,13 +40,12 @@ const ReportsPage = () => {
     const [calendarHeight, setCalendarHeight] = useState(0);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
+        setAdmin(localStorage.getItem('admin') === 'true');
+        if (localStorage.getItem('user')) {
+            const user = JSON.parse(localStorage.getItem('user'))
+            setUser(user);
         }
-    }, [isAuthenticated]);
+    }, []);
 
     useEffect(() => {
         GrapQL.loadTreatments().then((res: {treatments}) => {

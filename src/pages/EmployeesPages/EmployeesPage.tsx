@@ -4,7 +4,6 @@ import GraphQL from "../../Utils/GrapQL.ts";
 import EmployeeItem from "../../components/employeeItem.tsx";
 import {Employee, EmployeeTag} from "../../models/Employee.model.ts";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import {Alert, Button, Kbd, Label, Modal, Select, Spinner, TextInput, Tooltip} from "flowbite-react";
 import "./EmployeesPage.scss";
@@ -17,7 +16,6 @@ import Footer1 from "../../components/utils/Footer1.tsx";
 import {customTheme} from "../../Utils/theme.ts";
 
 const EmployeesPage = () => {
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -38,13 +36,8 @@ const EmployeesPage = () => {
     const [tag, setTag] = useState<EmployeeTag>(EmployeeTag.JUNIOR);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GrapQL.loadEmployees().then((res: {employees}) => {

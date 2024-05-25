@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import GraphQL from "../../Utils/GrapQL.ts";
 import {Comp, CompTreatment, IReport} from "../../models/Comp.model.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import {Employee} from "../../models/Employee.model.ts";
 import {IoClose, IoPencil} from "react-icons/io5";
 import EditCompTreatment from "./EditCompTreatment.tsx";
@@ -16,7 +15,7 @@ import {customTheme} from "../../Utils/theme.ts";
 
 
 const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmentOpen, setChooseCompTreatmentOpen}) => {
-    const {user, isAuthenticated, getPermission} = useKindeAuth();
+    const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string } | null>(null);
     const [admin, setAdmin] = useState(false);
 
     const [comp, setComp] = useState<Comp>(null);
@@ -52,17 +51,21 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }, []);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
+        const isAdmin = localStorage.getItem('admin') === 'true'
+
+        if (localStorage.getItem('user')) {
+            if (isAdmin) {
+                setAdmin(isAdmin);
             } else {
-                setClientName(user?.given_name)
-                setClientSurname(user?.family_name)
-                setClientEmail(user?.email);
+                const user = JSON.parse(localStorage.getItem('user'))
+                setClientName(user.given_name);
+                setClientSurname(user.family_name);
+                setClientEmail(user.email);
             }
+
+            setUser(user);
         }
-    }, [isAuthenticated]);
+    }, []);
 
     useEffect(() => {
         GraphQL.loadCompDetails(compId).then((res: { getCompDetails }) => {
@@ -228,7 +231,7 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }
 
     const book = () => {
-        if (!isAuthenticated) {
+        if (!user) {
             ErrorAlert('Oops...', 'Musisz być zalogowany/-a, aby zarezerwować wizytę!');
             return;
         }

@@ -2,7 +2,6 @@ import {useEffect, useState} from "react";
 import GraphQL from "../../Utils/GrapQL";
 import {PAGE_PATH} from "../../Utils/env.ts";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import {Button, Datepicker, Label, Modal, Spinner, Table, TextInput} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
@@ -10,7 +9,6 @@ import {Comp} from "../../models/Comp.model.ts";
 import Footer1 from "../../components/utils/Footer1.tsx";
 
 const CompsPage = () => {
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -24,18 +22,10 @@ const CompsPage = () => {
     const [timeEnd, setTimeEnd] = useState('');
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
-        // GraphQL.loadRecipes().then((res: {getRecipes}) => {
-        //     console.log(res.getRecipes);
-        // })
         GraphQL.loadComps().then((res: {comps}) => {
             setIsLoading(false);
             setComps(res.comps.sort((a: Comp, b: Comp) => convertToDate(a.date).getTime() - convertToDate(b.date).getTime()));

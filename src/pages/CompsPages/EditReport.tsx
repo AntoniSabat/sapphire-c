@@ -6,7 +6,6 @@ import {Employee} from "../../models/Employee.model.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import {API_PATH, PAGE_PATH} from "../../Utils/env.ts";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import {
     Breadcrumb,
@@ -30,7 +29,6 @@ const EditReport = () => {
     const {compId, reportId} = useParams();
     const navigate = useNavigate();
 
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [report, setReport] = useState<null | IReport>(null);
@@ -56,13 +54,8 @@ const EditReport = () => {
     const [wantToAddCustomHours, setWantToAddCustomHours] = useState(false);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GrapQL.loadEmployees().then((res: {employees}) => {

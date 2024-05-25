@@ -2,7 +2,6 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import GrapQL from "../../Utils/GrapQL.ts";
 import {Employee, EmployeeTag} from "../../models/Employee.model.ts";
-import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
 import {Alert, Avatar, Breadcrumb, Button, Kbd, Spinner} from "flowbite-react";
 import "./EmployeeDetails.scss";
 import Menu from "../../components/utils/Menu.tsx";
@@ -18,7 +17,6 @@ import EditEmployee from "./EditEmployee.tsx";
 const EmployeeDetails = () => {
     const { id } = useParams();
 
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [isLoading, setIsLoading] = useState(true);
@@ -45,13 +43,8 @@ const EmployeeDetails = () => {
     }, []);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GrapQL.loadTreatments().then((res: {treatments}) => {

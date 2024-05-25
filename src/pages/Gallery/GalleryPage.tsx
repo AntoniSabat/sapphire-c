@@ -4,7 +4,6 @@ import GrapQL from "../../Utils/GrapQL.ts";
 import {Gallery} from "../../models/Gallery.model.ts";
 import {IoClose} from "react-icons/io5";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
-import { useKindeAuth } from "@kinde-oss/kinde-auth-react";
 import Menu from "../../components/utils/Menu.tsx";
 import Footer1 from "../../components/utils/Footer1.tsx";
 import "../../index.scss";
@@ -13,7 +12,6 @@ import {Button, FileInput, FloatingLabel, Label, Spinner} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
 
 const GalleryPage = () => {
-    const {isAuthenticated, getPermission} = useKindeAuth();
     const [admin, setAdmin] = useState(false);
 
     const [galleries, setGalleries] = useState([]);
@@ -27,13 +25,8 @@ const GalleryPage = () => {
     const [selectedGallery, setSelectedGallery] = useState<string | null>(null);
 
     useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            if (admin) {
-                setAdmin(true);
-            }
-        }
-    }, [isAuthenticated]);
+        setAdmin(localStorage.getItem('admin') === 'true');
+    }, []);
 
     useEffect(() => {
         GrapQL.loadGalleries().then((res: {galleries}) => {
