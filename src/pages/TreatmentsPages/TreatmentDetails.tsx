@@ -69,11 +69,8 @@ const TreatmentDetails = () => {
                         <div
                             className={'flex flex-col gap-5 px-5 justify-between shadow container w-[80%] m-auto bg-transparent h-fit mt-[20vh] relative rounded-md lg:w-1/2 md:w-[60%]'}>
                             {(treatment.image == "null" || treatment.image == null || !treatment.image)
-                                && <Avatar img={''} rounded size={"xl"} className={'avatar'}/>
-                            }
-
-                            {treatment.image &&
-                                <Avatar img={treatment.image} rounded={true} size={"xl"} className={'avatar'}/>
+                                ? <Avatar img={''} rounded size={"xl"} className={'avatar'}/>
+                                : <Avatar img={treatment.image} rounded={true} size={"xl"} className={'avatar'}/>
                             }
 
                             <div className={'flex flex-col gap-1.5 mt-[-10%]'}>

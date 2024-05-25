@@ -1,21 +1,23 @@
 import {useKindeAuth} from "@kinde-oss/kinde-auth-react";
-import {Button, Spinner} from "flowbite-react";
+import {Button} from "flowbite-react";
 import {Outlet} from "react-router-dom";
 import {customTheme} from "./Utils/theme.ts";
 import Menu from "./components/utils/Menu.tsx";
+import {useEffect, useState} from "react";
 
 const ProtectedRoute = () => {
-    const {isLoading, isAuthenticated, login, register} = useKindeAuth();
+    const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string } | null>(null);
 
-    if (isLoading) {
-        return (
-            <div className={'w-full h-[100vh]'}>
-                <Spinner className={'absolute top-1/2 left-1/2'} size={"xl"}/>
-            </div>
-        )
-    }
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            const user = JSON.parse(localStorage.getItem('user'))
+            setUser(user);
+        }
+    }, []);
 
-    if (!isLoading && !isAuthenticated) {
+    const {login, register} = useKindeAuth();
+
+    if (!user) {
         return (
             <div className={'w-full m-auto box'}>
                 <Menu/>
@@ -32,7 +34,7 @@ const ProtectedRoute = () => {
         )
     }
 
-    if (!isLoading && isAuthenticated) {
+    if (user) {
         return <Outlet/>
     }
 };

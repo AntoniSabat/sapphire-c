@@ -94,11 +94,8 @@ const EmployeeDetails = () => {
 
                         <div className={'flex flex-col gap-5 justify-between shadow container w-[80%] m-auto bg-transparent h-fit mt-[20vh] relative rounded-md lg:w-1/2 md:w-[60%]'}>
                             {(employee.image == "null" || employee.image == null)
-                                && <Avatar img={''} rounded size={"xl"} className={'avatar'}/>
-                            }
-
-                            {employee.image &&
-                                <Avatar img={employee.image} rounded={true} size={"xl"} className={'avatar'}/>
+                                ? <Avatar img={''} rounded size={"xl"} className={'avatar'}/>
+                                : <Avatar img={employee.image} rounded={true} size={"xl"} className={'avatar'}/>
                             }
 
                             <div className={'flex flex-col gap-1.5 mt-[-10%]'}>

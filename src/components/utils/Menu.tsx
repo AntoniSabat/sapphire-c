@@ -11,7 +11,7 @@ import {
     NavbarBrand,
     NavbarCollapse,
     NavbarLink,
-    NavbarToggle, Spinner
+    NavbarToggle
 } from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
 import {useEffect, useState} from "react";
@@ -36,8 +36,17 @@ const checkUserPicture = (pictureUrl: string): Promise<string> => {
 
 const Menu = ({upperHeader= true}) => {
     const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string | null } | null>(null);
-    const {logout, isAuthenticated , isLoading, getPermission} = useKindeAuth();
+    const {logout, isAuthenticated , getPermission} = useKindeAuth();
     const [userPicture, setUserPicture] = useState<string | undefined>('');
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            console.log('wchodze do isAuthenitacted')
+            const admin = getPermission('admin').isGranted;
+            admin ? localStorage.setItem('admin', 'true') : localStorage.setItem('admin', '0');
+            localStorage.setItem('user', JSON.stringify(user));
+        }
+    }, [isAuthenticated]);
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
@@ -61,14 +70,6 @@ const Menu = ({upperHeader= true}) => {
         fetchUserPicture();
     }, [user?.picture]);
 
-    useEffect(() => {
-        if (isAuthenticated) {
-            const admin = getPermission('admin').isGranted;
-            admin ? localStorage.setItem('admin', 'true') : localStorage.removeItem('admin');
-            localStorage.setItem('user', JSON.stringify(user));
-        }
-    }, [isAuthenticated]);
-
     return (
         <div>
             <Flowbite>
@@ -77,31 +78,27 @@ const Menu = ({upperHeader= true}) => {
                     <NavbarBrand href={PAGE_PATH}>
                         <img src={logo} className="mr-3 h-12 sm:h-12" alt="Flowbite React Logo" />
                     </NavbarBrand>
-                    {isLoading
-                        ? <div className="flex md:order-2">
-                            <Spinner/>
-                        </div>
-                        : isAuthenticated
-                            ? <>
-                                <div className="flex md:order-2">
-                                    <Dropdown
-                                        arrowIcon={false}
-                                        inline
-                                        label={
-                                            <Avatar img={`${userPicture}`} rounded/>
-                                        }
-                                    >
-                                        <Dropdown.Header>
-                                            <span className="block text-sm">{user?.given_name} {user?.family_name}</span>
-                                            <span className="block truncate text-sm font-medium">{user?.email}</span>
-                                        </Dropdown.Header>
-                                        <Dropdown.Item><a href={`${PAGE_PATH}/profile`}>Profil</a></Dropdown.Item>
-                                        <Dropdown.Divider/>
-                                        <Dropdown.Item onClick={logout}>Wyloguj się</Dropdown.Item>
-                                    </Dropdown>
-                                    <Navbar.Toggle/>
-                                </div>
-                            </>
+                    {user
+                        ? <>
+                            <div className="flex md:order-2">
+                                <Dropdown
+                                    arrowIcon={false}
+                                    inline
+                                    label={
+                                        <Avatar img={`${userPicture}`} rounded/>
+                                    }
+                                >
+                                    <Dropdown.Header>
+                                        <span className="block text-sm">{user?.given_name} {user?.family_name}</span>
+                                        <span className="block truncate text-sm font-medium">{user?.email}</span>
+                                    </Dropdown.Header>
+                                    <Dropdown.Item><a href={`${PAGE_PATH}/profile`}>Profil</a></Dropdown.Item>
+                                    <Dropdown.Divider/>
+                                    <Dropdown.Item onClick={logout}>Wyloguj się</Dropdown.Item>
+                                </Dropdown>
+                                <Navbar.Toggle/>
+                            </div>
+                        </>
                         :
                             <div className="flex md:order-2">
                                 <Button color={'primary'} theme={customTheme.button}>
