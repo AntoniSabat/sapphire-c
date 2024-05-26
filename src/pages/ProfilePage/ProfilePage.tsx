@@ -44,12 +44,11 @@ const ProfilePage = () => {
     }, [user]);
 
     const handleLogout = async() => {
-        logout().then(() => {
-            setUser(null);
-            setAdmin(false);
-            localStorage.removeItem('admin');
-            localStorage.removeItem('user');
-        });
+        setUser(null);
+        setAdmin(false);
+        localStorage.removeItem('user');
+        localStorage.removeItem('admin');
+        logout()
     }
 
     return (
