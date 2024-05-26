@@ -231,7 +231,7 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }
 
     const book = () => {
-        if (user === null || user === {}) {
+        if (!user) {
             ErrorAlert('Oops...', 'Musisz być zalogowany/-a, aby zarezerwować wizytę!');
             return;
         }
