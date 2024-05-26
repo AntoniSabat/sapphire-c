@@ -142,7 +142,7 @@ const HomePage = () => {
             </div>
 
             <div className={'container mx-auto mt-[50px] px-10'}>
-                <div className={'mb-5'}>
+                <div className={'mb-10'}>
                     <h1 className="text-center text-3xl font-bold mt-10">O nas!</h1>
                     <p className="text-center text-md mt-2">Poznaj naszą historię..</p>
                 </div>
@@ -196,19 +196,13 @@ const HomePage = () => {
                 </Timeline>
             </div>
 
-            <div className="gradient bg-secondary min-h-[100vh] w-full relative mt-10">
-                {/*<div className={'absolute '}></div>*/}
+            <div className="gradient bg-secondary flex flex-col justify-between items-center sm:block min-h-[100vh] h-fit w-full relative mt-10 pb-[150px] sm:pb-0">
                 <div className={'mb-5'}>
                     <h1 className="text-center text-3xl font-bold mt-10 text-white">Poznaj nasz Team!</h1>
                 </div>
 
                 <div
-                    className={'container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 items-center gap-12 justify-items-center mt-32'}>
-                    <div className={'flex flex-col gap-5 items-center'}>
-                        <Avatar img={''} size={'xl'} rounded/>
-                        <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>
-                        <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>
-                    </div>
+                    className={'container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-12 justify-items-center mt-[20px] sm:mt-[80px]'}>
                     <div className={'flex flex-col gap-5 items-center'}>
                         <Avatar img={''} size={'xl'} rounded/>
                         <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>
@@ -227,12 +221,12 @@ const HomePage = () => {
                 </div>
 
                 <Button theme={customTheme.button} color={'primary'}
-                        className={'absolute bottom-24 left-[50%] translate-x-[-50%]'}>
+                        className={'mt-16 sm:absolute sm:bottom-24 sm:left-[50%] sm:translate-x-[-50%]'}>
                     <Link to={`${PAGE_PATH}/employees`}>Zobacz wszystkich</Link>
                 </Button>
             </div>
 
-            <div className={'min-h-[130vh] test'}></div>
+            <div className={'min-h-[190vh] test'}></div>
             <Footer1/>
         </div>
     );
