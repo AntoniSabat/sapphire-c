@@ -35,31 +35,32 @@ const checkUserPicture = (pictureUrl: string): Promise<string> => {
 }
 
 const Menu = ({upperHeader= true}) => {
-    const [user, setUser] = useState<{ given_name: string, family_name: string, email: string, picture: string | null } | null>(null);
-    const {logout, isAuthenticated , getPermission} = useKindeAuth();
+    const [savedUser, setSavedUser] = useState<{ given_name: string, family_name: string, email: string, picture: string | null } | null>(null);
+    const {logout, isAuthenticated , getPermission, user} = useKindeAuth();
     const [userPicture, setUserPicture] = useState<string | undefined>('');
 
     useEffect(() => {
         if (isAuthenticated) {
             console.log('wchodze do isAuthenitacted')
             const admin = getPermission('admin').isGranted;
-            admin ? localStorage.setItem('admin', 'true') : localStorage.setItem('admin', '0');
+            admin ? localStorage.setItem('admin', 'true') : localStorage.removeItem('admin');
             localStorage.setItem('user', JSON.stringify(user));
+            console.log(user);
         }
     }, [isAuthenticated]);
 
     useEffect(() => {
         if (localStorage.getItem('user')) {
             const user = JSON.parse(localStorage.getItem('user'));
-            setUser(user);
+            setSavedUser(user);
         }
     }, []);
 
     useEffect(() => {
         const fetchUserPicture = async () => {
             try {
-                if (user?.picture) {
-                    const pictureUrl = await checkUserPicture(user.picture);
+                if (savedUser?.picture) {
+                    const pictureUrl = await checkUserPicture(savedUser.picture);
                     setUserPicture(pictureUrl as string);
                 }
             } catch (error) {
@@ -68,7 +69,7 @@ const Menu = ({upperHeader= true}) => {
         };
 
         fetchUserPicture();
-    }, [user?.picture]);
+    }, [savedUser?.picture]);
 
     return (
         <div>
@@ -78,7 +79,7 @@ const Menu = ({upperHeader= true}) => {
                     <NavbarBrand href={PAGE_PATH}>
                         <img src={logo} className="mr-3 h-12 sm:h-12" alt="Flowbite React Logo" />
                     </NavbarBrand>
-                    {user
+                    {savedUser
                         ? <>
                             <div className="flex md:order-2">
                                 <Dropdown
@@ -89,8 +90,8 @@ const Menu = ({upperHeader= true}) => {
                                     }
                                 >
                                     <Dropdown.Header>
-                                        <span className="block text-sm">{user?.given_name} {user?.family_name}</span>
-                                        <span className="block truncate text-sm font-medium">{user?.email}</span>
+                                        <span className="block text-sm">{savedUser?.given_name} {savedUser?.family_name}</span>
+                                        <span className="block truncate text-sm font-medium">{savedUser?.email}</span>
                                     </Dropdown.Header>
                                     <Dropdown.Item><a href={`${PAGE_PATH}/profile`}>Profil</a></Dropdown.Item>
                                     <Dropdown.Divider/>
