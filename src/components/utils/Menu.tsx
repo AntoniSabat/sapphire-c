@@ -41,19 +41,15 @@ const Menu = ({upperHeader= true}) => {
 
     useEffect(() => {
         if (isAuthenticated) {
-            console.log('wchodze do isAuthenitacted')
             const admin = getPermission('admin').isGranted;
             admin ? localStorage.setItem('admin', 'true') : localStorage.removeItem('admin');
             localStorage.setItem('user', JSON.stringify(user));
-            console.log(user);
+            loadUser();
         }
     }, [isAuthenticated]);
 
     useEffect(() => {
-        if (localStorage.getItem('user')) {
-            const user = JSON.parse(localStorage.getItem('user'));
-            setSavedUser(user);
-        }
+        loadUser();
     }, []);
 
     useEffect(() => {
@@ -70,6 +66,20 @@ const Menu = ({upperHeader= true}) => {
 
         fetchUserPicture();
     }, [savedUser]);
+
+    const loadUser = () => {
+        if (localStorage.getItem('user')) {
+            const user = JSON.parse(localStorage.getItem('user'));
+            setSavedUser(user);
+        }
+    }
+
+    const handleLogout = async() => {
+        setSavedUser(null);
+        localStorage.removeItem('user');
+        localStorage.removeItem('admin');
+        await logout()
+    }
 
     return (
         <div>
@@ -95,7 +105,7 @@ const Menu = ({upperHeader= true}) => {
                                     </Dropdown.Header>
                                     <Dropdown.Item><a href={`${PAGE_PATH}/profile`}>Profil</a></Dropdown.Item>
                                     <Dropdown.Divider/>
-                                    <Dropdown.Item onClick={logout}>Wyloguj się</Dropdown.Item>
+                                    <Dropdown.Item onClick={handleLogout}>Wyloguj się</Dropdown.Item>
                                 </Dropdown>
                                 <Navbar.Toggle/>
                             </div>

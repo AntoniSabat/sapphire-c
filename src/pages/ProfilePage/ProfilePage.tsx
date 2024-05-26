@@ -48,7 +48,7 @@ const ProfilePage = () => {
         setAdmin(false);
         localStorage.removeItem('user');
         localStorage.removeItem('admin');
-        logout()
+        await logout()
     }
 
     return (
