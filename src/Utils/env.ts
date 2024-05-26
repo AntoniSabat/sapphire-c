@@ -1,4 +1,4 @@
-export const PAGE_PATH = 'https://sapphirestudio.online';
+export const PAGE_PATH = 'https://www.sapphirestudio.online';
 // export const PAGE_PATH = 'http://localhost:5173';
 export const API_PATH = 'https://test-83kl6hmmy-antonisabats-projects.vercel.app';
 // export const API_PATH = 'http://localhost:3000';

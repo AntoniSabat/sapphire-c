@@ -69,7 +69,7 @@ const Menu = ({upperHeader= true}) => {
         };
 
         fetchUserPicture();
-    }, [savedUser?.picture]);
+    }, [savedUser]);
 
     return (
         <div>

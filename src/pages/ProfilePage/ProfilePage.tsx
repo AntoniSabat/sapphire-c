@@ -41,14 +41,15 @@ const ProfilePage = () => {
         };
 
         fetchUserPicture();
-    }, [user?.picture]);
+    }, [user]);
 
     const handleLogout = async() => {
-        await logout();
-        setUser(null);
-        setAdmin(false);
-        localStorage.removeItem('admin');
-        localStorage.removeItem('user');
+        logout().then(() => {
+            setUser(null);
+            setAdmin(false);
+            localStorage.removeItem('admin');
+            localStorage.removeItem('user');
+        });
     }
 
     return (
