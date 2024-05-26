@@ -54,16 +54,16 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
         const isAdmin = localStorage.getItem('admin') === 'true'
 
         if (localStorage.getItem('user')) {
-            if (isAdmin) {
-                setAdmin(isAdmin);
-            } else {
-                const user = JSON.parse(localStorage.getItem('user'))
-                setClientName(user.given_name);
-                setClientSurname(user.family_name);
-                setClientEmail(user.email);
-            }
+            const savedUser = JSON.parse(localStorage.getItem('user'))
+            setUser(savedUser);
 
-            setUser(user);
+            if (isAdmin) {
+                setAdmin(true);
+            } else {
+                setClientName(savedUser.given_name);
+                setClientSurname(savedUser.family_name);
+                setClientEmail(savedUser.email);
+            }
         }
     }, []);
 
@@ -231,7 +231,7 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
     }
 
     const book = () => {
-        if (!user) {
+        if (user === null || user === {}) {
             ErrorAlert('Oops...', 'Musisz być zalogowany/-a, aby zarezerwować wizytę!');
             return;
         }
