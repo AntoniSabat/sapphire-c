@@ -5,7 +5,6 @@ import {Employee, EmployeeTag} from "../../models/Employee.model.ts";
 import {Alert, Avatar, Breadcrumb, Button, Kbd, Spinner} from "flowbite-react";
 import "./EmployeeDetails.scss";
 import Menu from "../../components/utils/Menu.tsx";
-import Footer1 from "../../components/utils/Footer1.tsx";
 import {HiHome, HiInformationCircle} from "react-icons/hi";
 import {PAGE_PATH} from "../../Utils/env.ts";
 import {customTheme} from "../../Utils/theme.ts";

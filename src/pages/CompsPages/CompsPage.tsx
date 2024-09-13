@@ -6,7 +6,6 @@ import Menu from "../../components/utils/Menu.tsx";
 import {Button, Datepicker, Label, Modal, Spinner, Table, TextInput} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
 import {Comp} from "../../models/Comp.model.ts";
-import Footer1 from "../../components/utils/Footer1.tsx";
 
 const CompsPage = () => {
     const [admin, setAdmin] = useState(false);

@@ -23,7 +23,6 @@ import {HiHome} from "react-icons/hi";
 import {customTheme} from "../../Utils/theme.ts";
 import {Swiper, SwiperSlide} from "swiper/react";
 import EditCompTreatment from "./EditCompTreatment.tsx";
-import Footer1 from "../../components/utils/Footer1.tsx";
 
 const EditReport = () => {
     const {compId, reportId} = useParams();

@@ -10,7 +10,6 @@ import hair from "../../assets/images/fryzura.png";
 import man from "../../assets/images/man.png";
 import {Currency, Treatment, TreatmentTag} from "../../models/Treatment.model.ts";
 import {HiInformationCircle} from "react-icons/hi";
-import Footer1 from "../../components/utils/Footer1.tsx";
 
 const TreatmentsPage = () => {
     const [admin, setAdmin] = useState(false);

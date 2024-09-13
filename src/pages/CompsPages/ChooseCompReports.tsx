@@ -4,7 +4,6 @@ import {PAGE_PATH} from "../../Utils/env.ts";
 import Menu from "../../components/utils/Menu.tsx";
 import {Button, Spinner, Table} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
-import Footer1 from "../../components/utils/Footer1.tsx";
 
 const ChooseCompReports = () => {
     const [comps, setComps] = useState([]);

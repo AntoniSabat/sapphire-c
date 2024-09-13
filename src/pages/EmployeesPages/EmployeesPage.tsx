@@ -12,7 +12,6 @@ import stylistEmployee from "../../assets/images/stylistEmployee.png";
 import juniorEmployee from "../../assets/images/juniorEmployee.png";
 import manEmployee from "../../assets/images/manEmployee.jpeg";
 import {HiInformationCircle} from "react-icons/hi";
-import Footer1 from "../../components/utils/Footer1.tsx";
 import {customTheme} from "../../Utils/theme.ts";
 
 const EmployeesPage = () => {

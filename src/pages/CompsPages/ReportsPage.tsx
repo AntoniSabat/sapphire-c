@@ -6,7 +6,6 @@ import "./ReportsPage.scss";
 import {PAGE_PATH} from "../../Utils/env.ts";
 import {Employee} from "../../models/Employee.model.ts";
 import Menu from "../../components/utils/Menu.tsx";
-import Footer1 from "../../components/utils/Footer1.tsx";
 import {Alert, Breadcrumb, Label, Select, Spinner} from "flowbite-react";
 import {HiHome, HiInformationCircle} from "react-icons/hi";
 

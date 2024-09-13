@@ -5,7 +5,6 @@ import {Gallery} from "../../models/Gallery.model.ts";
 import {IoClose} from "react-icons/io5";
 import {ConfirmAlert, ErrorAlert, SuccessAlert} from "../../Utils/alerts.ts";
 import Menu from "../../components/utils/Menu.tsx";
-import Footer1 from "../../components/utils/Footer1.tsx";
 import "../../index.scss";
 import "./GalleryPage.scss";
 import {Button, FileInput, FloatingLabel, Label, Spinner} from "flowbite-react";
