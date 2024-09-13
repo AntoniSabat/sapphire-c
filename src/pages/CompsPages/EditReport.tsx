@@ -570,7 +570,6 @@ const EditReport = () => {
                     }
                 </div>
             }
-            <Footer1/>
         </div>
     );
 };

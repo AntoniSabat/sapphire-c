@@ -60,7 +60,6 @@ const ChooseCompReports = () => {
                     </div>
                 </div>
             }
-            <Footer1/>
         </div>
     );
 };

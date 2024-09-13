@@ -95,7 +95,7 @@ const CompsPage = () => {
                                           onClick={() => setIsCreateCompOpen(true)}>Dodaj turniej</Button>}
                     </div>
 
-                    <div className={'container mx-auto mt-10 overflow-x-scroll'}>
+                    <div className={'container mx-auto mt-10 overflow-x-scroll '}>
                         <Table hoverable>
                             <Table.Head>
                                 <Table.HeadCell>Nazwa</Table.HeadCell>
@@ -106,6 +106,7 @@ const CompsPage = () => {
                                 {admin && <Table.HeadCell>Usuń</Table.HeadCell>}
                             </Table.Head>
                             <Table.Body className="divide-y">
+                                <div className={'w-[80%] h-1 progress absolute'}></div>
                                 {comps.map(((comp, index) => (
                                     <Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                                         <Table.Cell
@@ -207,7 +208,6 @@ const CompsPage = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-            <Footer1/>
         </div>
     );
 };

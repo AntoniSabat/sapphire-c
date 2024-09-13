@@ -260,8 +260,6 @@ const GalleryPage = () => {
                         </div>
                 </div>
             }
-
-            <Footer1/>
         </div>
     );
 };

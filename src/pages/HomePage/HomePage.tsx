@@ -1,6 +1,6 @@
 import './HomePage.scss';
 import Menu from "../../components/utils/Menu.tsx";
-import {Avatar, Button, Timeline} from "flowbite-react";
+import {Button} from "flowbite-react";
 import {customTheme} from "../../Utils/theme.ts";
 import CountUp from "react-countup";
 import {useState} from "react";
@@ -13,8 +13,6 @@ import hair from "../../assets/images/fryzura.png";
 import man from "../../assets/images/man.png";
 import {Link} from "react-router-dom";
 import {PAGE_PATH} from "../../Utils/env.ts";
-import {HiArrowNarrowRight} from "react-icons/hi";
-import {HiCalendar} from "react-icons/hi2";
 import Footer1 from "../../components/utils/Footer1.tsx";
 
 const results = [
@@ -24,7 +22,7 @@ const results = [
         plus: false,
     },
     {
-        ammount: 1700,
+        ammount: 5000,
         text: 'obserwujących ig',
         plus: true
     },
@@ -44,7 +42,7 @@ const HomePage = () => {
     const [counterOn, setCounterOn] = useState(false);
 
     return (
-        <div className={'relative pb-[65px] min-h-[100vh] overflow-x-hidden'}>
+        <div className={'relative min-h-[100vh] overflow-x-hidden'}>
             <Menu/>
             <div className={'min-h-[100vh] pb-[50px] h-fit relative'}>
                 <div className={'flex flex-col justify-center items-center'}>
@@ -61,7 +59,7 @@ const HomePage = () => {
                     </p>
 
                     <div
-                        className={'flex items-center justify-center mt-10 bg-primary rounded-[50%] w-[80vw] h-[80vw] sm:w-[70vw] sm:h-[70vw] md:w-[65vw] md:h-[65vw] lg:w-[55vw] lg:h-[55vw] xl:w-[53vw] xl:h-[53vw] md:absolute md:right-[-10vw] md:bottom-[7%] lg:right-[-10vw] lg:bottom-[7%] xl:right-[-10vw] xl:bottom-[7%]'}>
+                        className={'flex items-center justify-center mt-10 bg-primary rounded-[50%] w-[80vw] h-[80vw] sm:w-[70vw] sm:h-[70vw] md:w-[65vw] md:h-[65vw] lg:w-[55vw] lg:h-[55vw] xl:w-[50vw] xl:h-[50vw] 2xl:w-[45vw] 2xl:h-[45vw] md:absolute md:right-[-10vw] md:bottom-[7%] lg:right-[-10vw] lg:bottom-[7%] xl:right-[-10vw] xl:bottom-[7%]'}>
                         <div className="circleImg rounded-[50%] w-full h-full"></div>
 
                         <div
@@ -141,92 +139,92 @@ const HomePage = () => {
                 </div>
             </div>
 
-            <div className={'container mx-auto mt-[50px] px-10'}>
-                <div className={'mb-10'}>
-                    <h1 className="text-center text-3xl font-bold mt-10">O nas!</h1>
-                    <p className="text-center text-md mt-2">Poznaj naszą historię..</p>
-                </div>
-                <Timeline>
-                    <Timeline.Item>
-                        <Timeline.Point color={''} icon={HiCalendar}/>
-                        <Timeline.Content>
-                            <Timeline.Time>Obecnie</Timeline.Time>
-                            <Timeline.Title>Rozwijamy się</Timeline.Title>
-                            <Timeline.Body>
-                                Get access to over 20+ pages including a dashboard layout, charts, kanban board,
-                                calendar, and pre-order
-                                E-commerce & Marketing pages.
-                            </Timeline.Body>
-                        </Timeline.Content>
-                    </Timeline.Item>
-                    <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar}/>
-                        <Timeline.Content>
-                            <Timeline.Time>2022</Timeline.Time>
-                            <Timeline.Title>Tutaj coś tam będzie</Timeline.Title>
-                            <Timeline.Body>
-                                All of the pages and components are first designed in Figma and we keep a parity between
-                                the two versions
-                                even as we update the project.
-                            </Timeline.Body>
-                            <Button color="gray">
-                                Więcej info
-                                <HiArrowNarrowRight className="ml-2 h-3 w-3"/>
-                            </Button>
-                        </Timeline.Content>
-                    </Timeline.Item>
-                    <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar}/>
-                        <Timeline.Content>
-                            <Timeline.Time>1991</Timeline.Time>
-                            <Timeline.Title>Pierwszy turniej</Timeline.Title>
-                            <Timeline.Body>
-                                Get started with dozens of web components and interactive elements built on top of
-                                Tailwind CSS.
-                            </Timeline.Body>
-                        </Timeline.Content>
-                    </Timeline.Item>
-                    <Timeline.Item>
-                        <Timeline.Point icon={HiCalendar}/>
-                        <Timeline.Content>
-                            <Timeline.Time>Rok załozenia 1990</Timeline.Time>
-                            <Timeline.Title>Powstanie Sapphire Studio</Timeline.Title>
-                        </Timeline.Content>
-                    </Timeline.Item>
-                </Timeline>
-            </div>
+            {/*<div className={'container mx-auto mt-[50px] px-10'}>*/}
+            {/*    <div className={'mb-10'}>*/}
+            {/*        <h1 className="text-center text-3xl font-bold mt-10">O nas!</h1>*/}
+            {/*        <p className="text-center text-md mt-2">Poznaj naszą historię..</p>*/}
+            {/*    </div>*/}
+            {/*    <Timeline>*/}
+            {/*        <Timeline.Item>*/}
+            {/*            <Timeline.Point color={''} icon={HiCalendar}/>*/}
+            {/*            <Timeline.Content>*/}
+            {/*                <Timeline.Time>Obecnie</Timeline.Time>*/}
+            {/*                <Timeline.Title>Rozwijamy się</Timeline.Title>*/}
+            {/*                <Timeline.Body>*/}
+            {/*                    Get access to over 20+ pages including a dashboard layout, charts, kanban board,*/}
+            {/*                    calendar, and pre-order*/}
+            {/*                    E-commerce & Marketing pages.*/}
+            {/*                </Timeline.Body>*/}
+            {/*            </Timeline.Content>*/}
+            {/*        </Timeline.Item>*/}
+            {/*        <Timeline.Item>*/}
+            {/*            <Timeline.Point icon={HiCalendar}/>*/}
+            {/*            <Timeline.Content>*/}
+            {/*                <Timeline.Time>2022</Timeline.Time>*/}
+            {/*                <Timeline.Title>Tutaj coś tam będzie</Timeline.Title>*/}
+            {/*                <Timeline.Body>*/}
+            {/*                    All of the pages and components are first designed in Figma and we keep a parity between*/}
+            {/*                    the two versions*/}
+            {/*                    even as we update the project.*/}
+            {/*                </Timeline.Body>*/}
+            {/*                <Button color="gray">*/}
+            {/*                    Więcej info*/}
+            {/*                    <HiArrowNarrowRight className="ml-2 h-3 w-3"/>*/}
+            {/*                </Button>*/}
+            {/*            </Timeline.Content>*/}
+            {/*        </Timeline.Item>*/}
+            {/*        <Timeline.Item>*/}
+            {/*            <Timeline.Point icon={HiCalendar}/>*/}
+            {/*            <Timeline.Content>*/}
+            {/*                <Timeline.Time>1991</Timeline.Time>*/}
+            {/*                <Timeline.Title>Pierwszy turniej</Timeline.Title>*/}
+            {/*                <Timeline.Body>*/}
+            {/*                    Get started with dozens of web components and interactive elements built on top of*/}
+            {/*                    Tailwind CSS.*/}
+            {/*                </Timeline.Body>*/}
+            {/*            </Timeline.Content>*/}
+            {/*        </Timeline.Item>*/}
+            {/*        <Timeline.Item>*/}
+            {/*            <Timeline.Point icon={HiCalendar}/>*/}
+            {/*            <Timeline.Content>*/}
+            {/*                <Timeline.Time>Rok załozenia 1990</Timeline.Time>*/}
+            {/*                <Timeline.Title>Powstanie Sapphire Studio</Timeline.Title>*/}
+            {/*            </Timeline.Content>*/}
+            {/*        </Timeline.Item>*/}
+            {/*    </Timeline>*/}
+            {/*</div>*/}
 
-            <div className="gradient bg-secondary flex flex-col justify-between items-center sm:block min-h-[100vh] h-fit w-full relative mt-10 pb-[150px] sm:pb-0">
-                <div className={'mb-5'}>
-                    <h1 className="text-center text-3xl font-bold mt-10 text-white">Poznaj nasz Team!</h1>
-                </div>
+            {/*<div className="gradient bg-secondary flex flex-col justify-between items-center sm:block min-h-[100vh] h-fit w-full relative mt-10 pb-[150px] sm:pb-0">*/}
+            {/*    <div className={'mb-5'}>*/}
+            {/*        <h1 className="text-center text-3xl font-bold mt-10 text-white">Poznaj nasz Team!</h1>*/}
+            {/*    </div>*/}
 
-                <div
-                    className={'container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-12 justify-items-center mt-[20px] sm:mt-[80px]'}>
-                    <div className={'flex flex-col gap-5 items-center'}>
-                        <Avatar img={''} size={'xl'} rounded/>
-                        <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>
-                        <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>
-                    </div>
-                    <div className={'flex flex-col gap-5 items-center'}>
-                        <Avatar img={''} size={'xl'} rounded/>
-                        <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>
-                        <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>
-                    </div>
-                    <div className={'flex flex-col gap-5 items-center'}>
-                        <Avatar img={''} size={'xl'} rounded/>
-                        <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>
-                        <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>
-                    </div>
-                </div>
+            {/*    <div*/}
+            {/*        className={'container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 items-center gap-12 justify-items-center mt-[20px] sm:mt-[80px]'}>*/}
+            {/*        <div className={'flex flex-col gap-5 items-center'}>*/}
+            {/*            <Avatar img={''} size={'xl'} rounded/>*/}
+            {/*            <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>*/}
+            {/*            <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>*/}
+            {/*        </div>*/}
+            {/*        <div className={'flex flex-col gap-5 items-center'}>*/}
+            {/*            <Avatar img={''} size={'xl'} rounded/>*/}
+            {/*            <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>*/}
+            {/*            <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>*/}
+            {/*        </div>*/}
+            {/*        <div className={'flex flex-col gap-5 items-center'}>*/}
+            {/*            <Avatar img={''} size={'xl'} rounded/>*/}
+            {/*            <h4 className={'text-lg font-bold text-white'}>Lena Shokola</h4>*/}
+            {/*            <p className={'small-caps text-white mt-[-20px] text-lg'}>pracownik top</p>*/}
+            {/*        </div>*/}
+            {/*    </div>*/}
 
-                <Button theme={customTheme.button} color={'primary'}
-                        className={'mt-16 sm:absolute sm:bottom-24 sm:left-[50%] sm:translate-x-[-50%]'}>
-                    <Link to={`${PAGE_PATH}/employees`}>Zobacz wszystkich</Link>
-                </Button>
-            </div>
+            {/*    <Button theme={customTheme.button} color={'primary'}*/}
+            {/*            className={'mt-16 sm:absolute sm:bottom-24 sm:left-[50%] sm:translate-x-[-50%]'}>*/}
+            {/*        <Link to={`${PAGE_PATH}/employees`}>Zobacz wszystkich</Link>*/}
+            {/*    </Button>*/}
+            {/*</div>*/}
 
-            <div className={'min-h-[190vh] test'}></div>
+            {/*<div className={'min-h-[190vh] test'}></div>*/}
             <Footer1/>
         </div>
     );

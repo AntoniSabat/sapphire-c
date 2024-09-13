@@ -333,7 +333,6 @@ const ReportsPage = () => {
                     </table>
                 </div>
             }
-            <Footer1/>
         </div>
     )
 }

@@ -256,8 +256,6 @@ const EmployeesPage = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-
-            <Footer1/>
         </div>
     );
 };

@@ -148,7 +148,6 @@ const EmployeeDetails = () => {
                     </div>
                 </div>
             }
-            <Footer1/>
         </div>
     );
 };

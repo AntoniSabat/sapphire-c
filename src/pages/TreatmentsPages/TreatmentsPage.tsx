@@ -224,8 +224,6 @@ const TreatmentsPage = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-
-            <Footer1/>
         </div>
     );
 };

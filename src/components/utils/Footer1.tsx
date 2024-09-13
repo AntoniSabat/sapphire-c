@@ -12,7 +12,7 @@ const links = [
 
 const Footer1 = () => {
     return (
-        <Footer container className={'absolute bottom-0'}>
+        <Footer container>
             <FooterCopyright href="#" by="Sapphire Studio™ - page created by Antoni Sabat" year={2024} />
             <FooterLinkGroup>
                 {links.map(({href, label}) => (
