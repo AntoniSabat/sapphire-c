@@ -104,7 +104,7 @@ const EditReport = () => {
                 });
 
                 Promise.all(promises).then(() => {
-                    const result: any[] = Array.from(uniqueEmployees).sort((a: Employee, b: Employee) => a.name < b.name ? -1 : 1);
+                    const result: any[] = Array.from(uniqueEmployees).sort((a: Employee, b: Employee) => a?.name < b?.name ? -1 : 1);
                     setAvailableEmployees(result);
                     if (!selectedEmployeeId || !result.find((employee: Employee) => employee._id === selectedEmployeeId)) {
                         setSelectedEmployeeId(result[0]._id);
@@ -218,7 +218,7 @@ const EditReport = () => {
     }
 
     const getTreatmentName = (id: string) => {
-        const name = treatments.find((treatment: { _id: string }) => treatment._id === id).name;
+        const name = treatments.find((treatment: { _id: string }) => treatment._id === id)?.name;
         if (name)
             return name
         else
@@ -281,9 +281,9 @@ const EditReport = () => {
 
                     const body = {
                         body: {
-                            employee: getEmployeeInfo(selectedEmployeeId).name + ' ' + getEmployeeInfo(selectedEmployeeId).surname,
+                            employee: getEmployeeInfo(selectedEmployeeId)?.name + ' ' + getEmployeeInfo(selectedEmployeeId)?.surname,
                             time: getCompTreatmentInfo(selectedCompTreatmentId).timeStart + '-' + getCompTreatmentInfo(selectedCompTreatmentId).timeEnd,
-                            treatment: getTreatment(selectedTreatment).name,
+                            treatment: getTreatment(selectedTreatment)?.name,
                         },
                         recipients: [{
                             name: report.clientName + ' ' + report.clientSurname,
@@ -330,7 +330,7 @@ const EditReport = () => {
                         <Breadcrumb className={'mt-5 ml-5'}>
                             <Breadcrumb.Item href={`${PAGE_PATH}`} icon={HiHome}>Główna</Breadcrumb.Item>
                             <Breadcrumb.Item href={`${PAGE_PATH}/comps/reports`}>Zgłoszenia</Breadcrumb.Item>
-                            <Breadcrumb.Item href={`${PAGE_PATH}/comps/${comp._id}`}>{comp.name}</Breadcrumb.Item>
+                            <Breadcrumb.Item href={`${PAGE_PATH}/comps/${comp._id}`}>{comp?.name}</Breadcrumb.Item>
                             <Breadcrumb.Item href={`${PAGE_PATH}/comps/${comp._id}/reports`}>Harmonogram</Breadcrumb.Item>
                             <Breadcrumb.Item>Szczegóły zgłoszenia</Breadcrumb.Item>
                         </Breadcrumb>
@@ -355,7 +355,7 @@ const EditReport = () => {
                                         disabled={true}
                                         id="treatment"
                                         placeholder="Usługa"
-                                        value={getTreatment(report.treatmentId).name}
+                                        value={getTreatment(report.treatmentId)?.name}
                                         required
                                     />
                                 </div>
@@ -379,7 +379,7 @@ const EditReport = () => {
                                         disabled={true}
                                         id="employee"
                                         placeholder="Jan Kowalski"
-                                        value={getEmployeeInfo(report.employeeId).name + ' ' + getEmployeeInfo(report.employeeId).surname}
+                                        value={getEmployeeInfo(report.employeeId)?.name + ' ' + getEmployeeInfo(report.employeeId)?.surname}
                                         required
                                     />
                                 </div>
@@ -435,7 +435,7 @@ const EditReport = () => {
                                     />
                                 </div>
 
-                                { admin &&
+                                {admin &&
                                     <div>
                                         <h1 className="text-center text-2xl font-bold mt-10">Dla admina</h1>
 
@@ -479,7 +479,7 @@ const EditReport = () => {
                                                     {availableEmployees.map((employee: any, index) => {
                                                         return (
                                                             <option key={index}
-                                                                    value={employee._id}>{employee.name} {employee.surname}</option>
+                                                                    value={employee._id}>{employee?.name} {employee?.surname}</option>
                                                         )
                                                     })}
                                                 </Select>
@@ -542,13 +542,13 @@ const EditReport = () => {
                                                           onChange={() => setWantToAddCustomHours(!wantToAddCustomHours)}/>
                                                 <Label value={'Chcę dodać własne godziny'}/>
                                             </div>
-                                            { wantToAddCustomHours &&
+                                            {wantToAddCustomHours &&
                                                 <div>
                                                     <EditCompTreatment
-                                                            comp={comp._id}
-                                                            compTreatment={getCompTreatmentInfo(selectedCompTreatmentId)}
-                                                            edit={handleEditCompTreatment}
-                                                            setIsEditCompTreatmentOpen={setWantToAddCustomHours}
+                                                        comp={comp._id}
+                                                        compTreatment={getCompTreatmentInfo(selectedCompTreatmentId)}
+                                                        edit={handleEditCompTreatment}
+                                                        setIsEditCompTreatmentOpen={setWantToAddCustomHours}
                                                     />
                                                 </div>
                                             }
@@ -559,11 +559,12 @@ const EditReport = () => {
                                                     theme={customTheme.button} color={'secondary'}>Edytuj
                                                 zgłoszenie</Button>
                                         </div>
-                                        <div className="w-full mt-7 mb-5">
-                                            <Button className={'mx-auto'} onClick={() => removeReport(report._id)} color={'failure'}>Usuń zgłoszenie</Button>
-                                        </div>
                                     </div>
                                 }
+                                <div className="w-full mt-7 mb-5">
+                                    <Button className={'mx-auto'} onClick={() => removeReport(report._id)}
+                                            color={'failure'}>Usuń zgłoszenie</Button>
+                                </div>
                             </div>
                         </div>
                     }

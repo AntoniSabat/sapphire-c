@@ -314,12 +314,15 @@ const ReportsPage = () => {
                                         <div style={{position: 'relative'}}>
                                             {availableTimes.map((treatment: Treatments) => (
                                                 <Link
-                                                    to={`${PAGE_PATH}/comps/${compId}/reports/${comp.reports.find(r => r._id === treatment.id)._id}`}
+                                                    to={`${PAGE_PATH}/comps/${compId}/reports/${comp.reports.find(r => r._id === treatment.id)?._id ?? ''}`}
                                                     key={treatment.id}
                                                     className={`treatment ${treatment.confirmed ? 'confirmed' : 'no-confirmed'}`}
                                                     style={{
                                                         top: treatment.start,
-                                                        height: treatmentsHeight[comp.reports.find(r => r._id === treatment.id).treatmentId],
+                                                        height: treatmentsHeight[comp.reports.find(r => r._id === treatment.id)?.treatmentId],
+                                                        borderStyle: "solid",
+                                                        borderWidth: 1,
+                                                        borderColor: "white"
                                                     }}
                                                 >
                                                     <div className="reported">

@@ -139,10 +139,12 @@ const EditCompTreatment = ({ comp, compTreatment, edit, setIsEditCompTreatmentOp
                            value={`*${timeError}*`}/>
                 }
 
-                <Button onClick={handleEdit} className={'mt-2'} theme={customTheme.button} color={'secondary'} >Edytuj</Button>
-                <Button color={'failure'} onClick={() => setIsEditCompTreatmentOpen(false)}>
-                    <IoClose color={'white'}/>
-                </Button>
+                <div className={'flex items-center'}>
+                    <Button onClick={handleEdit} className={'mt-2'} theme={customTheme.button} color={'secondary'} >Edytuj</Button>
+                    <Button color={'failure'} onClick={() => setIsEditCompTreatmentOpen(false)}>
+                        <IoClose color={'white'}/>
+                    </Button>
+                </div>
             </div>
         </div>
     );
