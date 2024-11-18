@@ -27,7 +27,7 @@ const TreatmentItem = ({treatment, remove}) => {
         //     }
         // </div>
         <Card
-            className="max-w-sm"
+            className="w-full"
             imgAlt=""
             imgSrc={treatment.image}
         >
@@ -61,7 +61,7 @@ const TreatmentItem = ({treatment, remove}) => {
             </a>
             <div className="flex items-center justify-between">
                 <span
-                    className="text-3xl font-bold text-gray-900 dark:text-white">{treatment.currency != Currency.PLN ? treatment.currency === Currency.EUR && '€' : ''}599{treatment.currency === Currency.PLN && 'zł'}</span>
+                    className="text-3xl font-bold text-gray-900 dark:text-white">{treatment.currency != Currency.PLN ? treatment.currency === Currency.EUR && '€' : ''}{treatment.price}{treatment.currency === Currency.PLN && 'zł'}</span>
                 <button
                     className="rounded-lg bg-secondary px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-4 focus:ring-primary dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
                 >
