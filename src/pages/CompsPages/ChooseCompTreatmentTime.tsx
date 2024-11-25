@@ -137,10 +137,10 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
         const phoneNumber = e.target.value;
         setClientPhoneNumber(phoneNumber);
 
-        const phonePattern = /^[0-9]{3}-[0-9]{3}-[0-9]{3}$/;
+        const phonePattern = /^[0-9]{9}$/;
 
         if (!phonePattern.test(phoneNumber)) {
-            setPhoneNumberError('Format xxx-xxx-xxx');
+            setPhoneNumberError('Format xxxxxxxxx');
         } else {
             setPhoneNumberError('');
         }
@@ -466,9 +466,9 @@ const ChooseCompTreatmentTime = ({compId, selectedTreatments, chooseCompTreatmen
                                             </div>
                                                 <TextInput
                                                     type="tel"
-                                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+                                                    pattern="/^[0-9]{9}$/"
                                                     required
-                                                    placeholder="123-123-123"
+                                                    placeholder="123123123"
                                                     onChange={handlePhoneNumberChange}
                                                     value={clientPhoneNumber}
                                                     className={`${validatePhoneNumber() ? 'text-gray-900 focus:ring-cyan-300 focus:border-blue-500' : 'text-red-700 focus:ring-red-500 focus:border-red-700'} border bg-grey-50 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500`}

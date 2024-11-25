@@ -428,9 +428,9 @@ const EditReport = () => {
                                     <TextInput
                                         disabled={true}
                                         type="tel"
-                                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{3}"
+                                        pattern="/^[0-9]{9}$/"
                                         required
-                                        placeholder="123-123-123"
+                                        placeholder="123123123"
                                         value={report.clientPhoneNumber === 'null' ? 'Nie podano' : report.clientPhoneNumber}
                                     />
                                 </div>
