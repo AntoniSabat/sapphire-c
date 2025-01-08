@@ -2,21 +2,6 @@ import {gql, request} from "graphql-request";
 import {GRAPHQL_API} from "./env.ts";
 import {Break} from "../models/Comp.model.ts";
 
-const loadRecipes = async() => {
-    const query = gql`
-    query GetRecipes {
-      getRecipes {
-        name
-        description
-        thumbsUp
-        thumbsDown
-        createdAt
-      }
-    }`
-
-    return await request('http://localhost:5005', query);
-}
-
 const loadComps = async() => {
     const query = gql`
         query {
@@ -805,8 +790,6 @@ const removeGallery = async(id: string) => {
 }
 
 export default {
-    loadRecipes,
-
     // comps
     loadComps,
     loadCompDetails,
